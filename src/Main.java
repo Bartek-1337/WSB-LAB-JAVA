@@ -1,4 +1,5 @@
 import devices.Car;
+import devices.Phone;
 
 public class Main {
     public static void main(String[] args) {
@@ -65,5 +66,12 @@ public class Main {
         System.out.println("Przebieg: " + passat.millage);
         System.out.println(passat.equals(passat2));
 
+        //zadanie 7
+        System.out.println("\n--WYNIK ZADANIA 7--\n");
+        Phone samsung = new Phone("Samsung", "M52", 2020);
+        System.out.println(samsung);
+        samsung.turnOn();
+        System.out.println(fiat);
+        fiat.turnOn();
     }
 }

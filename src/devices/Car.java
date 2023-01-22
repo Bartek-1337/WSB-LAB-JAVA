@@ -1,9 +1,7 @@
 package devices;
 
-public class Car {
-    public String producer;
-    public String model;
-    public Integer yearOfProduction;
+public class Car extends Devices {
+
     public Double millage;
     public Double value;
     public Car(String producer, String model, Integer yearOfProduction, Double value) {
@@ -15,6 +13,16 @@ public class Car {
     }
     public String toString(){
         return "Producent: " + producer+", model: "+model+", rok produkcji: "+yearOfProduction + ", przebieg: " + millage + ", cena: " + value;
+    }
+
+    @Override
+    public void turnOn() {
+        super.turnOn();
+        System.out.println("Przekręcam kluczyk");
+        System.out.println("WRRR");
+        System.out.println("WRRRR");
+        System.out.println("WRRR");
+        System.out.println("Odpalony");
     }
 }
 
