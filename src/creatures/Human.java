@@ -13,7 +13,9 @@ public class Human implements Saleable {
     private Phone phone;
     private Animal animal;
     private Double cash;
+    private static Double DEFAULT_CASH = 10000.0;
     private Double salary;
+    private static Double DEFAULT_SALARY = 3500.0;
     private Double lastSalaryCheckValue;
     private Date lastSalaryCheckDate;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -22,6 +24,13 @@ public class Human implements Saleable {
     }
     public Human(String name) {
         this.name = name;
+        this.cash = DEFAULT_CASH;
+        this.salary = DEFAULT_SALARY;
+    }
+    public Human(String name, Double salary, Double cash) {
+        this.name = name;
+        this.cash = salary;
+        this.salary = cash;
     }
     public Double getSalary() {
         if (lastSalaryCheckDate!=null) {
