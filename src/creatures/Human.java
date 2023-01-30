@@ -1,13 +1,18 @@
+package creatures;
+
+import devices.Phone;
 import devices.Car;
+import interfaces.Saleable;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class Human {
+public class Human implements Saleable {
     String name;
     private Car car;
-
-
+    private Phone phone;
+    private Animal animal;
+    private Double cash;
     private Double salary;
     private Double lastSalaryCheckValue;
     private Date lastSalaryCheckDate;
@@ -48,8 +53,10 @@ public class Human {
         }
 
     }
-    public void setCar(Car car) {
-        if (salary>car.value)
+    public void setCar(Car car, boolean zDrugiejReki) {
+        if (zDrugiejReki) {
+            this.car = car;
+        }else if (salary>car.value)
         {
             System.out.println("Gratulacje! Kupiłeś samochód za gotówkę.");
             this.car = car;
@@ -65,4 +72,32 @@ public class Human {
     public Car getCar() {
         return this.car;
     }
+    public Phone setPhone(Phone phone) {
+        return this.phone = phone;
+    }
+    public Phone getPhone() {
+        return this.phone;
+    }
+    public Animal setAnimal(Animal animal) {
+        return this.animal = animal;
+    }
+    public Animal getAnimal() {
+        return this.animal;
+    }
+
+    public Double getCash() {
+        return this.cash;
+    }
+
+    public void setCash(Double cash) {
+        this.cash = cash;
+    }
+    public String getName()
+    {
+        return this.name;
+    }
+    public void sell(Human seller, Human buyer, Double price) {
+        System.out.println("Handel ludźmi jest zabroniony. Policja już jedzie.");
+    }
+
 }

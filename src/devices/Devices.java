@@ -6,4 +6,6 @@ public abstract class Devices {
     public String model;
     public Integer yearOfProduction;
     public void turnOn() {}
+
+
 }
