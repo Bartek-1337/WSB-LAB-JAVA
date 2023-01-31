@@ -1,11 +1,16 @@
 package devices;
 import interfaces.Saleable;
 import creatures.Human;
-import creatures.Animal;
-public class Car extends Devices implements Saleable   {
+public abstract class Car extends Devices implements Saleable {
 
     public Double millage;
     public Double value;
+    public static Double FUEL_LEVEL = 25.0;
+
+    public Car(String producer)
+    {
+        this.producer = producer;
+    }
     public Car(String producer, String model, Integer yearOfProduction, Double value) {
         this.producer = producer;
         this.model = model;
@@ -42,5 +47,6 @@ public class Car extends Devices implements Saleable   {
         seller.setCar(null, true);
         System.out.println("Samochód " + this + " został sprzedany przez " + seller.getName() + " do " + buyer.getName() + " za " + price + " zł.");
     }
+    abstract void refuel();
 }
 
