@@ -3,13 +3,12 @@ package creatures;
 import devices.Phone;
 import devices.Car;
 import interfaces.Saleable;
-
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
 public class Human implements Saleable {
     String name;
-    private Car car;
+    public Car[] garage;
     private Phone phone;
     private Animal animal;
     private Double cash;
@@ -18,19 +17,29 @@ public class Human implements Saleable {
     private static Double DEFAULT_SALARY = 3500.0;
     private Double lastSalaryCheckValue;
     private Date lastSalaryCheckDate;
+    private static Integer DEFAULT_GARAGE_SIZE = 2;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
     public String toString(){
-        return "Imię: " + name+", Wynagrodzenie: "+salary+", Samochód: "+car;
+        return "Imię: " + name+", Wynagrodzenie: "+salary+", Pieniądze na koncie: "+cash+", Samochód w garażu: "+garage;
     }
     public Human(String name) {
         this.name = name;
         this.cash = DEFAULT_CASH;
         this.salary = DEFAULT_SALARY;
+        this.garage = new Car[DEFAULT_GARAGE_SIZE];
     }
     public Human(String name, Double salary, Double cash) {
         this.name = name;
-        this.cash = salary;
-        this.salary = cash;
+        this.cash = cash;
+        this.salary = salary;
+        this.garage = new Car[DEFAULT_GARAGE_SIZE];
+    }
+    public Human(String name, Double salary, Double cash, Integer garageSize) {
+        this.name = name;
+        this.cash = cash;
+        this.salary = salary;
+        this.garage = new Car[garageSize];
     }
     public Double getSalary() {
         if (lastSalaryCheckDate!=null) {
@@ -62,24 +71,37 @@ public class Human implements Saleable {
         }
 
     }
-    public void setCar(Car car, boolean zDrugiejReki) {
-        if (zDrugiejReki) {
-            this.car = car;
-        }else if (salary>car.value)
-        {
-            System.out.println("Gratulacje! Kupiłeś samochód za gotówkę.");
-            this.car = car;
-        } else if (salary>(car.value/12)) {
-            System.out.println("Gratulacje! Kupiłeś samochód w kredo.");
-            this.car = car;
-        } else
-        {
-            System.out.println("Nie stać Cię na auto. Pozostaje Ci je ukraść.");
+    public void setCar(Car car,Integer parkingLotNumber) {
+        if (parkingLotNumber >= this.garage.length) {
+            System.out.println("Masz niewystarczająco miejsca w garażu.");
+        } else if (parkingLotNumber < 0) {
+            System.out.println("Nie masz garażu. Samochód musisz trzymać w garażu.");
+        } else if (this.garage[parkingLotNumber] != null) {
+            System.out.println("To miejsce w garażu jest zajęte.");
+        } else {
+            if (salary > car.value) {
+                System.out.println("Gratulacje! Kupiłeś samochód za gotówkę.");
+                this.garage[parkingLotNumber] = car;
+            } else if (salary > (car.value / 12)) {
+                System.out.println("Gratulacje! Kupiłeś samochód w kredo.");
+                this.garage[parkingLotNumber] = car;
+            } else {
+                System.out.println("Nie stać Cię na auto. Pozostaje Ci je ukraść.");
+            }
         }
 
     }
-    public Car getCar() {
-        return this.car;
+    public Double getValueOfAllCars() {
+        Double valueOfCars = 0.0;
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] != null) {
+                valueOfCars += this.garage[i].value;
+            }
+        }
+        return valueOfCars;
+    }
+    public Car getCar(Integer parkingLotNumber) {
+        return this.garage[parkingLotNumber];
     }
     public Phone setPhone(Phone phone) {
         return this.phone = phone;
