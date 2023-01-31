@@ -1,8 +1,10 @@
 package devices;
 
+import creatures.Human;
+
 public class Disel extends Car {
-    public Disel(String producer, String model, Integer yearOfProduction, Double value) {
-        super(producer, model, yearOfProduction, value);
+    public Disel(String producer, String model, Integer yearOfProduction, Double value, Human human) {
+        super(producer, model, yearOfProduction, value, human);
     }
     @Override
     public void refuel()

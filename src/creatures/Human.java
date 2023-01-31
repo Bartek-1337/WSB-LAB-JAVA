@@ -82,9 +82,11 @@ public class Human implements Saleable {
             if (salary > car.value) {
                 System.out.println("Gratulacje! Kupiłeś samochód za gotówkę.");
                 this.garage[parkingLotNumber] = car;
+                car.addOwner(this);
             } else if (salary > (car.value / 12)) {
                 System.out.println("Gratulacje! Kupiłeś samochód w kredo.");
                 this.garage[parkingLotNumber] = car;
+                car.addOwner(this);
             } else {
                 System.out.println("Nie stać Cię na auto. Pozostaje Ci je ukraść.");
             }
