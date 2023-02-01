@@ -1,38 +1,34 @@
 import creatures.Human;
+import devices.Application;
 import devices.Electric;
+import devices.Phone;
+
 public class Main {
     public static void main(String[] args) {
-        Human bartek = new Human("Bartek");
+        Phone samsung = new Phone("Samsung", "M52", 2022);
+        Human bartek = new Human("Bartek", 7000.0, 6000.0, 2);
+        bartek.setPhone(samsung);
+        Application chrome = new Application("Chrome", "1.0");
+        Application mozilla = new Application("Mozilla", 5.0, "2.0");
+        Application brave = new Application("Brave", 555.0, "2.0");
+        Application edge = new Application("Edge", 10000.0,"3.0");
         System.out.println(bartek);
-        Human tomek = new Human("Tomek", 200.0,4000.0,1);
-        System.out.println(tomek);
-        Electric tesla = new Electric("Tesla", "1", 2023, 1000.0, bartek);
-        System.out.println(tesla);
-        System.out.println("Wartość samochodów Bartka: "+ bartek.getValueOfAllCars());
-        System.out.println("Wartość samochodów Tomka: "+ tomek.getValueOfAllCars());
-        System.out.println("Kupuję samochód z salonu:");
-        bartek.setCar(tesla, 1);
-        System.out.println("Wartość samochodów Bartka: "+ bartek.getValueOfAllCars());
-        System.out.println("Wartość samochodów Tomka: "+ tomek.getValueOfAllCars());
-        System.out.println(tesla.getCurrentOwner());
-        System.out.println("Czy bartek posiadał samochów: "+ tesla.wasOwner(bartek));
-        System.out.println("Czy tomek posiadał samochów: "+ tesla.wasOwner(tomek));
-        System.out.println("Sprzedaję auto:");
-        tesla.sell(bartek,tomek,1000.0);
-        System.out.println("Czy bartek sprzedał samochód tomkowi: "+ tesla.wasSoldTo(bartek, tomek));
-        System.out.println("Czy tomek sprzedałsamochód bartkowi: "+ tesla.wasSoldTo(tomek, bartek));
-        System.out.println("Wartość samochodów Bartka: "+ bartek.getValueOfAllCars());
-        System.out.println("Wartość samochodów Tomka: "+ tomek.getValueOfAllCars());
-        System.out.println("Ostatni właściciel samochodu: "+ tesla.getCurrentOwner());
-        tesla.sell(tomek,bartek,1000.0);
-        System.out.println("Wartość samochodów Bartka: "+ bartek.getValueOfAllCars());
-        System.out.println("Wartość samochodów Tomka: "+ tomek.getValueOfAllCars());
-        System.out.println("Ostatni właściciel samochodu: "+ tesla.getCurrentOwner());
-        System.out.println("Liczba transakcji samochodu: "+ tesla.transactionCount());
-        System.out.println("Czy bartek posiadał samochów: "+ tesla.wasOwner(bartek));
-        System.out.println("Czy tomek posiadał samochów: "+ tesla.wasOwner(tomek));
-        System.out.println("Czy bartek sprzedał samochód tomkowi: "+ tesla.wasSoldTo(bartek, tomek));
-        System.out.println("Czy tomek sprzedałsamochód bartkowi: "+ tesla.wasSoldTo(tomek, bartek));
-        System.out.println("Transakcje, w których samochód brał udział: "+ tesla.getTransactionCount());
+        System.out.println(samsung);
+        System.out.println(chrome);
+        System.out.println(mozilla);
+        System.out.println(edge);
+        System.out.println(brave);
+        System.out.println("Twój stan konta przed zakupem aplikacji: "+bartek.getCash());
+        samsung.installAnApp(bartek, chrome);
+        samsung.installAnApp(bartek, mozilla);
+        samsung.installAnApp(bartek, brave);
+        samsung.installAnApp(bartek, edge);
+        System.out.println("Twój stan konta po zakupie aplikacji: "+bartek.getCash());
+        System.out.println("Lista Twoich darmowych aplikacji na telefonie: "+samsung.showFreeApps());
+        System.out.println("Czy aplikacja Chrome jest zainstalowana: "+samsung.isInstalled(chrome));
+        System.out.println("Czy aplikacja Edge jest zainstalowana: "+samsung.isInstalled(edge));
+        System.out.println("Lista Twoich aplikacji na telefonie posortowana po cenie: "+samsung.getInstalledAppsByPrice());
+        System.out.println("Lista Twoich aplikacji na telefonie posortowana po nazwie: "+samsung.getInstalledAppsAlphabetically());
+        System.out.println("Łączna wartość zainstalowanych aplikacji: "+samsung.getAllAppsValue());
     }
 }

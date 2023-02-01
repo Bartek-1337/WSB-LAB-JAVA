@@ -16,18 +16,18 @@ public class Transaction {
     }
 
     public Human getSeller() {
-        return seller;
+        return this.seller;
     }
 
     public Human getBuyer() {
-        return buyer;
+        return this.buyer;
     }
 
     public double getPrice() {
-        return price;
+        return this.price;
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 }

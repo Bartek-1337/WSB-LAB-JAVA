@@ -80,9 +80,9 @@ public abstract class Car extends Devices implements Saleable {
         }
         seller.garage[sellerGarageIndex] = null;
         buyer.garage[buyerGarageIndex] = this;
-        currentOwner = buyer;
+        this.currentOwner = buyer;
         Transaction transaction = new Transaction(seller, buyer, price, new Date());
-        transactions.add(transaction);
+        this.transactions.add(transaction);
 
         System.out.println("Samochód " + this + " został sprzedany przez " + seller.getName() + " do " + buyer.getName() + " za " + price + " zł.");
         }
@@ -104,20 +104,20 @@ public abstract class Car extends Devices implements Saleable {
         return false;
     }
     public int transactionCount() {
-        return transactions.size();
+        return this.transactions.size();
     }
     public List<Transaction> getTransactions() {
-        return transactions;
+        return this.transactions;
     }
     public Human getCurrentOwner() {
-        return currentOwner;
+        return this.currentOwner;
     }
     public void addOwner(Human owner) {
         this.currentOwner = owner;
         transactions.add(new Transaction(null, owner, 0.0, new Date()));
     }
     public int getTransactionCount() {
-        return transactions.size();
+        return this.transactions.size();
     }
 }
 
